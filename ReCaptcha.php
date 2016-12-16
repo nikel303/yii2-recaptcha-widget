@@ -91,7 +91,7 @@ class ReCaptcha extends InputWidget
         $view = $this->view;
         $view->registerJsFile(
             self::JS_API_URL . '?hl=' . $this->getLanguageSuffix(),
-            ['position' => $view::POS_HEAD, 'async' => true, 'defer' => true]
+            ['position' => $view::POS_END, 'async' => true, 'defer' => true]
         );
 
         $this->customFieldPrepare();
@@ -169,8 +169,8 @@ class ReCaptcha extends InputWidget
         }
         $this->jsExpiredCallback = 'recaptchaExpiredCallback';
 
-        $view->registerJs($jsCode, $view::POS_BEGIN);
-        $view->registerJs($jsExpCode, $view::POS_BEGIN);
+        $view->registerJs($jsCode, $view::POS_HEAD);
+        $view->registerJs($jsExpCode, $view::POS_HEAD);
         echo Html::input('hidden', $inputName, null, ['id' => $inputId]);
     }
 }
